@@ -26,7 +26,7 @@ public class Pessoa {
 		
 		System.out.println("INFORMAÇÕES DA PESSOA");
 		System.out.println("Nome completo: " + nome);
-		System.out.println("Data nascimento: " + data_nasc);
+		System.out.println("Data nascimento: " + data_nasc + "(" + this.getIdade() + "anos)");
 		System.out.println("Sexo biológico: " + this.getSexoBiologico());
 		
 	}
@@ -50,4 +50,21 @@ public class Pessoa {
 		}
 	}
 
+	public int getIdade() {
+		
+		SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+		Date data_nascimento;
+		int idade = -1;
+		
+		try {
+			data_nascimento = formatter.parse(this.data_nasc);
+			Date data_atual = new Date();
+			idade = data_atual.getYear() - data_nascimento.getYear();
+			
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		
+		return idade;	
+	}
 }
