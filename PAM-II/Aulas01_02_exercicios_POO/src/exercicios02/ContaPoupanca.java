@@ -22,8 +22,17 @@ public class ContaPoupanca extends ContaBancaria {
 	
 	public void calcularNovoSaldo(double taxaRendimento) {
 		
-		double novoSaldo = 1 + (this.getSaldo() * (taxaRendimento / 100.0));
-		this.setSaldo(novoSaldo);	
-		this.mostrarSaldo();
+		double novoSaldo = 0.0;
+		
+		if ((taxaRendimento >= 0) && (taxaRendimento <= 100)) {
+			
+			novoSaldo = this.getSaldo() * (1 + (taxaRendimento / 100.0));
+			this.setSaldo(novoSaldo);	
+			this.mostrarSaldo();
+			
+		} else {
+			
+			System.out.println("A taxa de rendimento deve ser um valor entre 0% e 100%!");
+		}	
 	}
 }
